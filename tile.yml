@@ -1,0 +1,56 @@
+---
+# The high-level description of your tile.
+# Replace these properties with real values.
+#
+name: map-server-tile # By convention lowercase with dashes
+icon_file: resources/icon.png
+label: Map Server
+description: Map Server Tile
+
+# Global defaults (all optional)
+#
+# org: test-org                         # Name of org to create for your apps
+# org_quota: 4096                       # Memory quota for that org in MB
+# space: test-space                     # Name of space to create for your apps
+apply_open_security_group: true         # Apply open security group, default: false
+
+# Specify the packages to be included in your tile.
+# The format of the section to include depends on the type
+# of package you are describing. For fragments of each type
+# that you can copy & paste, see:
+#
+# https://github.com/cf-platform-eng/tile-generator/blob/master/README.md
+#
+packages:
+- name: map-server
+  type: app
+  manifest:
+    path: resources/map-server.jar
+    memory: 512m
+- name: map-server-service-broker
+  type: app-broker
+  enable_global_access_to_plans: true
+  manifest:
+    path: resources/map-server-service-broker.jar
+    memory: 512m
+
+forms:
+- name: Service Broker Config
+  label: Service Broker Configuration
+  description: More Configuration Parameters
+  properties:
+  - name: MAP_SERVICE_APPS_DOMAIN
+    type: string
+    label: The Application Domain
+
+properties:
+- name: map_service_admin_username
+  type: string
+  default: ${SECURITY_USER}
+  label: Map Server username
+  description: Map Server username
+- name: map_service_admin_password
+  type: string
+  default: ${SECURITY_PASSWORD}
+  label: Map Server password
+  description: Map Server password

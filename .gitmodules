@@ -1,0 +1,6 @@
+[submodule "map-server-service-broker"]
+	path = map-server-service-broker
+	url = https://github.com/Pivotal-Japan/map-server-service-broker.git
+[submodule "map-server"]
+	path = map-server
+	url = https://github.com/Pivotal-Japan/map-server.git

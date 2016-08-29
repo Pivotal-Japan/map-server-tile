@@ -1,0 +1,5 @@
+*.jar
+product
+release
+*.iml
+.DS_Store
